@@ -1,0 +1,21 @@
+.form__container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.recipe__form{
+    height: 95%;
+    width: 50%;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: aqua;
+}
+.recipe__form textarea {
+    width: 90%;
+    height: 15%;
+}

@@ -1,0 +1,14 @@
+.recipe__card {
+    width: 30vw;
+    height:25rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-self: space-between;
+    margin-top: 2rem;
+    background-color: rgba(56, 8, 93, .8);
+}
+.recipe__img {
+    margin-top: .3rem;
+     width: 98%;
+}

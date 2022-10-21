@@ -23,6 +23,7 @@ module.exports = {
         instructions: DataTypes.TEXT,
         ingredients: DataTypes.STRING,
         ingredientsAmount: DataTypes.INTEGER,
+        time: DataTypes.STRING,
         image: {
             type: DataTypes.STRING,
             allowNull: true
@@ -34,6 +35,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false
-        }
+        },
+        favorite: DataTypes.BOOLEAN
     })
 }

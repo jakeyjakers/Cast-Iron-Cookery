@@ -1,11 +1,11 @@
-const {PORT} = process.env
-
 require('dotenv').config()
-const cors = require('cors')
-
 const express = require('express')
+const cors = require('cors')
+const {PORT} = process.env
+// const {sequelize} = require(`./Util/database`)
+// const {User, Recipe, Favs} = require(`./models`)
 
-const {isAuthenicated} = require('./Middleware/isAuthenticated')
+const {isAuthenticated} = require('./Middleware/isAuthenticated')
 const { login, register } = require('./Controllers/auth')
 const { addRecipe, deleteRecipe, getAllRecipes, favoriteRecipe, getAllFavsRecipes, getUserRecipes } = require('./Controllers/recipes')
 
@@ -13,6 +13,14 @@ const { addRecipe, deleteRecipe, getAllRecipes, favoriteRecipe, getAllFavsRecipe
 const app = express()
 app.use(cors())
 app.use(express.json())
+
+// setting up seqeul relations
+// User.hasMany(Recipe)
+//Recipe.belongsTo(User)
+//User.hasMany(Favs)
+//Recipe.hasMany(Favs)
+//Favs.belongsTo(User)
+
 
 // auth 
 app.post(`/register`, register)
@@ -22,10 +30,15 @@ app.post(`/login`, login)
 app.get(`/recipes`, getAllRecipes)
 
 // CRUD recipes auth is required
-app.post(`/addrecipe`, addRecipe)
-app.delete(`/recipes/:id`, deleteRecipe)
-app.put(`/recipe/:id`, favoriteRecipe)
-app.get(`/userrecipes/:userId`, getUserRecipes )
+app.post(`/addrecipe`, isAuthenticated, addRecipe)
+app.delete(`/recipes/:id`, isAuthenticated, deleteRecipe)
+app.put(`/recipe/:id`, isAuthenticated, favoriteRecipe)
+app.get(`/userrecipes/:userId`, isAuthenticated, getUserRecipes )
 
+// sequelize.sync().then(() => {
+    //app.listen(PORT, () =>  console.log(`Server up and listening on ${PORT}`))
+// }).catch((error) => {
+    // console.log(error)
+//})
 
 app.listen(PORT, () =>  console.log(`Server up and listening on ${PORT}`))

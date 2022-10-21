@@ -6,12 +6,16 @@ import AuthContext from '../Store/AuthContext'
 
 const SignupLogin = () => {
 
-  const authCtx = useContext(AuthContext)
-
   const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
-  const [passordCheck, setPasswordCheck] = useState('')
+  const [passwordCheck, setPasswordCheck] = useState('')
   const [register, setRegister] = useState(true)
+
+  const authCtx = useContext(AuthContext)
+
+  const siginInChangeHandler = () => {
+   setRegister(!register)
+  }
   
 
     const handleSubmit = (event) => {
@@ -22,7 +26,7 @@ const SignupLogin = () => {
           password: password,
         }
          
-        if(password !== passordCheck) {
+        if(password !== passwordCheck) {
           return
         }
         if(register === true) {
@@ -63,10 +67,14 @@ const SignupLogin = () => {
         <form className='form'>
             <input type="text" placeholder='username' onChange={(event) => setUserName(event.target.value)}/>
             <input type="password" placeholder='password' onChange={(event) => setPassword(event.target.value)}/>
-            <input type="password" placeholder='re-type password' onChange={(event) => setPasswordCheck(event.target.value)}/>
+            {register && <input type="password" placeholder='re-type password' onChange={(event) => setPasswordCheck(event.target.value)}/> }
             {/* <input type="email" placeholder='email' /> */}
-            <button onClick={handleSubmit}>Sign Up</button>
+            <button onClick={handleSubmit}>{register ? 'Log In' : 'Sign Up' }</button>
         </form>
+
+        <div>
+          <button onClick={siginInChangeHandler}>Alreday a member?</button>
+        </div>
     </div>
   )
 }

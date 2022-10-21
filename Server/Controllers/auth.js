@@ -6,7 +6,7 @@ const jwt = require(`jsonwebtoken`)
 
 
 const createToken = (username, id) => {
-  return jwt.sign({ username: username, id: id }, SECRET, { expiresIn: " 2days" });
+  return jwt.sign({ username: username, id: id }, SECRET, { expiresIn: "2d" });
 };
 
 module.exports = {
@@ -57,7 +57,7 @@ module.exports = {
             const { username, password } = req.body
             let foundUser = await User.findOne({where: {username: username}})
             if(foundUser) {
-                res(200).send(`That user already exists. Please choose another username.`)
+                res.status(200).send(`That user already exists. Please choose another username.`)
             } 
             else {
                 const salt = bcrypt.genSaltSync(10)

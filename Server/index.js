@@ -2,8 +2,8 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const {PORT} = process.env
-// const {sequelize} = require(`./Util/database`)
-// const {User, Recipe, Favs} = require(`./models`)
+const {sequelize} = require(`./Util/database`)
+const {User, Recipe, Favs} = require(`./models`)
 
 const {isAuthenticated} = require('./Middleware/isAuthenticated')
 const { login, register } = require('./Controllers/auth')
@@ -15,11 +15,11 @@ app.use(cors())
 app.use(express.json())
 
 // setting up seqeul relations
-// User.hasMany(Recipe)
-//Recipe.belongsTo(User)
-//User.hasMany(Favs)
-//Recipe.hasMany(Favs)
-//Favs.belongsTo(User)
+User.hasMany(Recipe)
+Recipe.belongsTo(User)
+User.hasMany(Favs)
+Recipe.hasMany(Favs)
+
 
 
 // auth 
@@ -35,10 +35,10 @@ app.delete(`/recipes/:id`, isAuthenticated, deleteRecipe)
 app.put(`/recipe/:id`, isAuthenticated, favoriteRecipe)
 app.get(`/userrecipes/:userId`, isAuthenticated, getUserRecipes )
 
-// sequelize.sync().then(() => {
-    //app.listen(PORT, () =>  console.log(`Server up and listening on ${PORT}`))
-// }).catch((error) => {
-    // console.log(error)
-//})
+sequelize.sync().then(() => {
+    app.listen(PORT, () =>  console.log(`Server up and listening on ${PORT}`))
+}).catch((error) => {
+    console.log(error)
+})
 
-app.listen(PORT, () =>  console.log(`Server up and listening on ${PORT}`))
+// app.listen(PORT, () =>  console.log(`Server up and listening on ${PORT}`))

@@ -12,7 +12,7 @@ module.exports = {
         username: DataTypes.STRING,
         passwordhash: DataTypes.STRING,
     }),
-    Recipe: sequelize.define(`user`, {
+    Recipe: sequelize.define(`recipe`, {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -22,7 +22,7 @@ module.exports = {
         title: DataTypes.STRING,
         instructions: DataTypes.TEXT,
         ingredients: DataTypes.STRING,
-        ingreientsAmount: DataTypes.INTEGER,
+        ingredientsAmount: DataTypes.INTEGER,
         image: {
             type: DataTypes.STRING,
             allowNull: true

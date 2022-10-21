@@ -8,13 +8,13 @@ const RecipeCard = () => {
     const navigator = useNavigate() 
 
     const detailHandler = () => {
-        // navigator(`/recipe/:${recipe.recipe_id}`)
+        navigator(`/recipe/:2`)
     }
 
   return (
     <div className='recipe__card'>
         <img src={Cobbler} className='recipe__img'/>
-        <h2>BlueBerry Cobbler</h2>
+        <h2 key={1}>BlueBerry Cobbler</h2>
         <button onClick={detailHandler}>See Recipe</button>
     </div>
   )

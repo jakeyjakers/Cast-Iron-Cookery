@@ -1,0 +1,24 @@
+.recipe__container {
+    position: relative;
+    width: 90vw;
+    height: 95vh;
+    margin: 3rem;
+    background-color: rgba(56, 8, 93, .65);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 3px solid  rgba(68, 61, 69, 1);
+    border-radius: 5px;
+}
+.recipe__details1 {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.recipe__details1 img {
+    width: 20vw;
+}

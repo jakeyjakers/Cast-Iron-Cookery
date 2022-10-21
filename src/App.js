@@ -20,8 +20,8 @@ const authCtx = useContext(AuthContext)
         <Routes>
           <Route index element={<Main />} />
           <Route path="login" element={<SignupLogin />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="newrecipe" element={<NewRecipe />} />
+          {authCtx.token && <Route path="profile" element={<Profile />} /> }
+         { authCtx.token && <Route path="newrecipe" element={<NewRecipe />} /> }
           <Route path="/recipe/:id" element={<RecipeDetails />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

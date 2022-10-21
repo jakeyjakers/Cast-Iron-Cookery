@@ -23,7 +23,7 @@ const getLocalData = () => {
 
     const remainingTime = calcRemainingTime(storedExp)
 
-    if (remainingTime <= 1000 *60 * 30) {
+    if (remainingTime <= 1000 * 60 * 30) {
 
         localStorage.removeItem('token')
         localStorage.removeItem('exp')
@@ -33,7 +33,7 @@ const getLocalData = () => {
 
     return {
         token: storedToken,
-        duration: storedExp,
+        duration: remainingTime,
         userId: storedId
     }
 }
@@ -44,8 +44,8 @@ export const AuthContextProvider = (props) => {
     let initialToken
     let initialId
     if (localData) {
-        initialToken = localStorage.token
-        initialId = localStorage.userId
+        initialToken = localData.token
+        initialId = localData.userId
     }
 
     const [token, setToken] = useState(initialToken)
@@ -56,12 +56,13 @@ export const AuthContextProvider = (props) => {
         setToken(null)
         setId(null)
         localStorage.removeItem('token')
-        localStorage.removeItem('userId')
         localStorage.removeItem('exp')
+        localStorage.removeItem('userId')
 
         if(logOutTimer) {
             clearTimeout(logOutTimer)
         }
+        console.log(`you are now logged out`)
     },[])
 
     const login = (token, exp, userId) => {
@@ -75,6 +76,7 @@ export const AuthContextProvider = (props) => {
         const remainingTime = calcRemainingTime(exp)
 
         logOutTimer = setTimeout(logout, remainingTime) 
+        console.log(`you are now logged in`)
     }
 
     useEffect(() => {

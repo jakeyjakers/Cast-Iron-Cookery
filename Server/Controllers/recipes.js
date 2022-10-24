@@ -4,15 +4,20 @@ module.exports = {
     addRecipe: async (req, res) => {
         console.log(`add recipe, recipes.js`)
 
+//{"value":{"title":"kirstens apple crisp","time":"1 hur",
+//]"ingredients":["8"],"amount":["4"],"instructions":"gfdsgsdfg"},"userId":"1"}
+
         try{
-            const {title, time, ingredients, amount, instructions, userId} = req.body
+            const {title, time, ingredients, amount, instructions} = req.body.values
+                const userId = req.body.userId
+                console.log(userId)
             const newRecipe = await Recipe.create({
                 title: title,
-                instrctions: instructions,
+                instructions: instructions,
                 ingredients: ingredients,
                 ingredientsAmount: amount,
                 time: time,
-                userId,
+                userId: userId,
             })
             res.status(201).send(newRecipe)
         } catch(error) {

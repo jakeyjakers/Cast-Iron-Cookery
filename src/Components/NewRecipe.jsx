@@ -42,11 +42,14 @@ const NewRecipe = () => {
     values.ingredients = ingredients
     values.amount = indgredientAmount
     console.log(values)
+    console.log(token)
+    console.log(userId)
 
-    axios.post(`${CASTIRON_COOKERY_API}/addrecipe`, values, userId, {
+    axios.post(`${CASTIRON_COOKERY_API}/addrecipe`, {values: values, userId: userId}, {
         headers: {
             authorization: token
         }
+        //axios.post(url[, data[, config]])
     })
     .then((response) => {
         console.log(response.data)

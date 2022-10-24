@@ -21,9 +21,10 @@ module.exports = {
         },
         title: DataTypes.STRING,
         instructions: DataTypes.TEXT,
-        ingredients: DataTypes.STRING,
-        ingredientsAmount: DataTypes.INTEGER,
+        ingredients: DataTypes.JSON,
+        ingredientsAmount: DataTypes.JSON,
         time: DataTypes.STRING,
+        userId: DataTypes.INTEGER,
         image: {
             type: DataTypes.STRING,
             allowNull: true
@@ -36,6 +37,8 @@ module.exports = {
             autoIncrement: true,
             allowNull: false
         },
-        favorite: DataTypes.BOOLEAN
+        favorite: DataTypes.BOOLEAN,
+        userId: DataTypes.INTEGER,
+        recipeId: DataTypes.INTEGER
     })
 }

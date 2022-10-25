@@ -69,7 +69,7 @@ const SignupLogin = () => {
             <input type="password" placeholder='password' onChange={(event) => setPassword(event.target.value)}/>
             {register && <input type="password" placeholder='re-type password' onChange={(event) => setPasswordCheck(event.target.value)}/> }
             {/* <input type="email" placeholder='email' /> */}
-            <button onClick={handleSubmit}>{register ? 'Log In' : 'Sign Up' }</button>
+            <button onClick={handleSubmit}>{register ? 'Sign Up' : 'Log In' }</button>
         </form>
 
         <div>

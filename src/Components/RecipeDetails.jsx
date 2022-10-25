@@ -1,48 +1,85 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
+import { useParams } from 'react-router-dom'
+import { CASTIRON_COOKERY_API } from '../Store/Config'
+import AuthContext from '../Store/AuthContext'
 import axios from 'axios'
 import Cobbler from '../StockPhotos/Cobbler-Image.jpg'
 import './RecipeDetails.css'
 
-const RecipeDetails = (props) => {
+const RecipeDetails = () => {
+  const {id} = useParams()
+  const authCtx = useContext(AuthContext)
+
+  const {userId, token} = useContext(AuthContext)
+
+  const favoriteHandler = () => {
+    axios
+        .post(`${CASTIRON_COOKERY_API}/recipe/favorite`, {recipeId: id, userId: userId}, {
+          headers: {
+              authorization: token
+  }})
+          .then((response) => {
+            console.log(response)
+          })
+          .catch((error) => {
+            console.log(`ERROR in promise of favorite handler recipedetails.jsx`)
+            console.log(error)
+          })
+  }
+
+  
+console.log(id)
+  const [recipe, setRecipe] = useState({})
 
   useEffect(() => {
     // axios call here for recipe details
-  }, [])
-
+    axios
+    .get(`${CASTIRON_COOKERY_API}/recipe/${id}`)
+    .then((response) => {
+      console.log(response.data)
+      setRecipe(response.data[0])
+      console.log(recipe)
+    }).catch((error) => {
+      console.log(`ERROR in promise of recipedetails.jsx`)
+      console.log(error)
+    })
+   
+  }, [id])
+  console.log(recipe)
+  
+// console.log(recipe[0].title)
   // will need to make a func to display data here, maybe with map? 
   // then render it it in the return
   return (
-    <div className='recipe__container'>RecipeDetails
+    <div className='recipe__container'>
       <div className='recipe__details1'>
         <img src={Cobbler}/>
-        Bluberry Cobbler
-        maybe back button?
+        <h3>Recipe Details..</h3>
+       <h2>{recipe.title}</h2> 
+        {/* //maybe back button? */}
+        <h4>{recipe.time}</h4>
+        {authCtx.token && <button onClick={() => favoriteHandler()}type='button'>Favorite</button> }
       </div>
       <div className='recipe__details2'>
         <ul>
-          <li>BlueBerrys</li>
-          <li>1 can</li>
-          <li>cake mix</li>
-          <li>1 box</li>
-          <li>butter</li>
-          <li>1 stick</li>
-          <li>brown suger</li>
-          <li>1/2 cup</li>
-          <li>sprite</li>
-          <li>12 oz. can</li>
+          
+          {/* {recipe.ingredients.map((ingredient, index) => {
+            return (
+              <li>{ingredient}</li>
+            )
+          })} */}
+          {/* {recipe.ingredientsAmount.map((amount, index) => {
+            return (
+              <li>{amount}</li>
+            )
+          })} */}
+          
         </ul>
       </div>
       <div className='recipe__instructions'>
         <span>
-          Dump canned blueberrys in ottom of dutch oven 
-          pour cake mix on top
-          pour half of sprite can on top
-          cut butter into tablespoon sized pieces and 
-          evenly distibute onto top of cake mix.
-          sprinkle suger on top.
-          cook with aproximately 350 degree heat, for 20-30 minutes
-           with wood or charcoal coals, being attentive to the amount 
-          of heat on bottom of dutch oven.
+          {recipe.instructions}
+         
 
         </span>
       </div>

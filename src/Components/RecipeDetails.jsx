@@ -3,9 +3,11 @@ import { useParams } from 'react-router-dom'
 import { CASTIRON_COOKERY_API } from '../Store/Config'
 import AuthContext from '../Store/AuthContext'
 import axios from 'axios'
+import LoadingSpinner from './ReuableElements/Loading'
 import './RecipeDetails.css'
 
 const RecipeDetails = () => {
+  const [loading, SetLoading] = useState(false)
   const {id} = useParams()
   const authCtx = useContext(AuthContext)
 
@@ -33,6 +35,7 @@ console.log(id)
   const [recipe, setRecipe] = useState({})
 
   useEffect(() => {
+    SetLoading(true)
     // axios call here for recipe details
     axios
     .get(`${CASTIRON_COOKERY_API}/recipe/${id}`)
@@ -40,6 +43,7 @@ console.log(id)
       console.log(response.data)
       setRecipe(response.data[0])
       console.log(recipe)
+      SetLoading(false)
     }).catch((error) => {
       console.log(`ERROR in promise of recipedetails.jsx`)
       console.log(error)
@@ -53,6 +57,7 @@ console.log(id)
 
   return (
     <div className='recipe__detial__parent'>
+      {loading && <LoadingSpinner /> }
     <div className='recipe__container'>
       <div className='recipe__details1'>
         <img src={recipe.image}/>

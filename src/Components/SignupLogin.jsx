@@ -14,7 +14,7 @@ const SignupLogin = () => {
   const authCtx = useContext(AuthContext)
 
   const siginInChangeHandler = () => {
-   setRegister(!register)
+    setRegister(!register)
   }
   
 
@@ -73,9 +73,9 @@ const SignupLogin = () => {
   return (
     <div className='form__container'>
         <form className='form'>
-            <input type="text" placeholder='username' onChange={(event) => setUserName(event.target.value)}/>
-            <input type="password" placeholder='password' onChange={(event) => setPassword(event.target.value)}/>
-            {register && <input type="password" placeholder='re-type password' onChange={(event) => setPasswordCheck(event.target.value)}/> }
+            <input type="text" placeholder='username' value={username} onChange={(event) => setUserName(event.target.value)}/>
+            <input type="password" placeholder='password' value={password} onChange={(event) => setPassword(event.target.value)}/>
+            {register && <input type="password" value={passwordCheck} placeholder='re-type password' onChange={(event) => setPasswordCheck(event.target.value)}/> }
             
             <button onClick={handleSubmit}>{register ? 'Sign Up' : 'Log In' }</button>
         </form>

@@ -3,6 +3,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: space-evenly;
     background-color: rgba(38, 37, 38, 0.9);
 }
@@ -49,7 +50,7 @@
 .recipe__details2 {
     position: absolute;
     left: 18.5rem;
-    width: 20vw;
+    width: 30vw;
     height: 100%;
     display: flex;
     align-items: center;
@@ -57,7 +58,7 @@
     border-left: 3px solid  rgba(68, 61, 69, 1);;
 }
 .recipe__instructions {
-    width: 45vw;
+    width: 35vw;
     height: 100%;
     border-left: 3px solid  rgba(68, 61, 69, 1);;
     overflow-y: scroll;

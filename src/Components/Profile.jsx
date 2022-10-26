@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect, useCallback, Fragment} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { CASTIRON_COOKERY_API } from '../Store/Config'
 import axios from 'axios'
 import RecipeCard from './ReuableElements/RecipeCard'
@@ -39,8 +39,8 @@ const getUserRecipes = () => {
     }
     })
   .then((response) => {
-    console.log(response.data)
     setRecipes(response.data)
+    console.log(response.data)
   }).catch((error) => {
     console.log(`ERROR in promise of getallrecipes main.jsx`)
     console.log(error)
@@ -55,8 +55,8 @@ const getFavRecipes = () => {
     }
     })
   .then((response) => {
-    console.log(response.data)
     setFavs(response.data)
+    console.log(response.data)
   }).catch((error) => {
     console.log(`ERROR in promise of getallrecipes main.jsx`)
     console.log(error)
@@ -78,12 +78,12 @@ const recipeView = () => {
 
 
 const recipeDsipley = recipes.map((recipe, index) => {
-  return <RecipeCard recipe={recipe}  displayState={displayState} deleteRecipe={deleteRecipe}/>
+  return <RecipeCard recipe={recipe}  displayState={displayState} deleteRecipe={deleteRecipe}key={recipe.id} isDelete={true}/>
 })
 
 const favsDisplay = favs.map((recipeFav, index) => {
   
-  return <RecipeCard recipeFav={recipeFav.recipe} displayState={displayState}/>
+  return <RecipeCard recipeFav={recipeFav.recipe} displayState={displayState} key={recipeFav.id}/>
 })
 const logOutHandler = () => {
   authCtx.logout()
@@ -95,9 +95,9 @@ const logOutHandler = () => {
       <button className='profile__view' type='button' onClick={recipeView}>{displayState ? 'My Favs' : 'My Recipes'}</button>
       <button className='profile__logout' onClick={logOutHandler}>Log Out</button>
       </div>
-      <Fragment className='profile__display'>
+      
       {displayState ? recipeDsipley : favsDisplay}
-      </Fragment>
+      
     </div>
   )
 }

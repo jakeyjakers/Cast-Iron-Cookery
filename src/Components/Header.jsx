@@ -13,15 +13,15 @@ const Header = () => {
         <h3>Cast Iron Cookery</h3>
         <img src={DutchOven}/>
       </div>
-
+      <a name='top'></a>
       <nav className="header__nav">
         {authCtx.token ? (
-          <Fragment>
+          <span>
             <Link className='header__nav__link'to="/">Home</Link>
             <Link className='header__nav__link'to="profile">Profile</Link>
             <Link className='header__nav__link'to="newrecipe">Submit Recipe</Link>
             <Link className='header__nav__link'to="login">Sign Up</Link>
-          </Fragment>
+          </span>
         ) : (
           <Fragment>
             <Link className='header__nav__link'to="/">Home</Link>

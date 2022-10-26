@@ -3,7 +3,7 @@ import Cobbler from "../../StockPhotos/Cobbler-Image.jpg";
 import "./RecipeCard.css";
 import { useNavigate } from "react-router-dom";
 
-const RecipeCard = ({ recipe, displayState, recipeFav, deleteRecipe}) => {
+const RecipeCard = ({ recipe, displayState, recipeFav, deleteRecipe, isDelete}) => {
   // console.log(recipe);
 
   const navigator = useNavigate();
@@ -11,7 +11,9 @@ const RecipeCard = ({ recipe, displayState, recipeFav, deleteRecipe}) => {
   const detailHandler = () => {
     navigator(`/recipe/${recipe.id}`);
   };
+console.log(recipe, recipeFav)
 
+let deleteDisplay = 'none'
   return (
     <Fragment>
       {displayState ? (
@@ -21,7 +23,7 @@ const RecipeCard = ({ recipe, displayState, recipeFav, deleteRecipe}) => {
             {recipe.title}
           </h2>
           <button onClick={detailHandler}>See Recipe</button>
-          <button onClick={() => deleteRecipe(recipe.id)}>Delete Recipe</button>
+         {isDelete ? <button onClick={() => deleteRecipe(recipe.id)}>Delete Recipe</button> : null } 
         </div>
       ) : (
         <div className="recipe__card">

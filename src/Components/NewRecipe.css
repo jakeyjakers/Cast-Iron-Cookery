@@ -14,8 +14,10 @@
     align-items: center;
     justify-content: space-evenly;
     background-color: rgba(56, 8, 93, .8);
-    border: 3px solid  rgba(68, 61, 69, 1);
+    /* border: 3px solid  rgba(68, 61, 69, 1);
+    border: 3px solid rgb(223, 242, 241); */
     border-radius: 5px;
+    box-shadow: -1px 3px 10px rgba(0,0,0,0.6);
 }
 .recipe__form textarea {
     width: 90%;

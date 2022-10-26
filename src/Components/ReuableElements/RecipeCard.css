@@ -1,18 +1,21 @@
 .recipe__card {
     width: 30vw;
-    height:25rem;
+    height:28rem;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-self: space-between;
+    justify-self: space-evenly;
     margin-top: 2rem;
     background-color: rgba(56, 8, 93, .8);
-    border: 3px solid  rgba(68, 61, 69, 1);
+    /* border: 3px solid  rgba(68, 61, 69, 1);
+    border: 3px solid rgb(223, 242, 241); */
     border-radius: 5px;
+    color: white;
+    box-shadow: -1px 3px 10px rgba(0,0,0,0.6);
 }
 .recipe__img {
     margin-top: .3rem;
-     width: 98%;
+     width: 95%;
      border-radius: 5px;
 }
 .recipe__card button {
@@ -23,7 +26,11 @@
     border: 2px;
     box-shadow: -1px 1px 10px;
     font-size: large;
+    margin-bottom: 1rem;
 }
 .recipe__card button:hover{
     cursor: pointer;
+}
+.none {
+    display: none;
 }

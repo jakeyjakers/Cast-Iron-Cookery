@@ -52,6 +52,7 @@ console.log(id)
   console.log(recipe.ingredientsAmount)
 
   return (
+    <div className='recipe__detial__parent'>
     <div className='recipe__container'>
       <div className='recipe__details1'>
         <img src={recipe.image}/>
@@ -84,6 +85,7 @@ console.log(id)
           {recipe.instructions}
         
       </div>
+    </div>
     </div>
   )
 }

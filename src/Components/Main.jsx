@@ -24,9 +24,9 @@ const Main = () => {
     })
   },[])
 
-  const recipeDsipley = recipes.map((recipe, index) => {
-    return <RecipeCard recipe={recipe} displayState={true} />
-  })
+  // const recipeDsipley = recipes.map((recipe, index) => {
+  //   return <RecipeCard recipe={recipe} displayState={true} />
+  // })
 
   const searchDisplay = recipes
     .filter((recipe, index) => {
@@ -36,7 +36,7 @@ const Main = () => {
     })
     .map((recipe, index) => {
       return (
-        <RecipeCard recipe={recipe} displayState={true}/>
+        <RecipeCard recipe={recipe} displayState={true} key={recipe.id} isDelete={false}/>
       )
     })
   

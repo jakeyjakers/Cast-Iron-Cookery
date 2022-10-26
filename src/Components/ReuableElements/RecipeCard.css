@@ -7,8 +7,23 @@
     justify-self: space-between;
     margin-top: 2rem;
     background-color: rgba(56, 8, 93, .8);
+    border: 3px solid  rgba(68, 61, 69, 1);
+    border-radius: 5px;
 }
 .recipe__img {
     margin-top: .3rem;
      width: 98%;
+     border-radius: 5px;
+}
+.recipe__card button {
+    height: 9vh;
+    width: 12vw;
+    background-color: rgba(75, 248, 225, 0.907);
+    border-radius: 3px;
+    border: 2px;
+    box-shadow: -1px 1px 10px;
+    font-size: large;
+}
+.recipe__card button:hover{
+    cursor: pointer;
 }

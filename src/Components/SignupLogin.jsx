@@ -25,16 +25,21 @@ const SignupLogin = () => {
           username: username,
           password: password,
         }
-         
+       
+        if(register === true) {
+            
         if(password !== passwordCheck) {
+          alert(`Whoops! Your password and paswword check don't match!`)
           return
         }
-        if(register === true) {
           axios.post(`${CASTIRON_COOKERY_API}/register`, body)
           .then((response) => {
             console.log(`After auth`, response.data)
             authCtx.login(response.data.token, response.data.exp, response.data.userId)
             console.log(response.data.token, response.data.exp, response.data.userId)
+            setUserName('')
+            setPassword('')
+            alert(`Thank you for signing up!`)
           }).catch((error) => {
             console.log(`error in return of then from post register`)
             console.log(error)
@@ -43,11 +48,14 @@ const SignupLogin = () => {
           })
         }
         else {
+          console.log(`am i hitting this?`)
           axios.post(`${CASTIRON_COOKERY_API}/login`, body)
           .then((response) => {
             console.log(`After auth in login`, response.data)
             authCtx.login(response.data.token, response.data.exp, response.data.userId)
             console.log(response.data.token, response.data.exp, response.data.userId)
+            setUserName('')
+            setPassword('')
           }).catch((error) => {
             console.log(`error in return of then from post login`)
             console.log(error)
@@ -68,13 +76,12 @@ const SignupLogin = () => {
             <input type="text" placeholder='username' onChange={(event) => setUserName(event.target.value)}/>
             <input type="password" placeholder='password' onChange={(event) => setPassword(event.target.value)}/>
             {register && <input type="password" placeholder='re-type password' onChange={(event) => setPasswordCheck(event.target.value)}/> }
-            {/* <input type="email" placeholder='email' /> */}
+            
             <button onClick={handleSubmit}>{register ? 'Sign Up' : 'Log In' }</button>
         </form>
 
-        <div>
-          <button onClick={siginInChangeHandler}>Alreday a member?</button>
-        </div>
+          <button className='form__check' onClick={siginInChangeHandler}>Alreday a member?</button>
+        
     </div>
   )
 }

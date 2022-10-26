@@ -7,3 +7,46 @@
     flex-wrap: wrap;
     gap: 20px;
 }
+.profile__head {
+    position: relative;
+    width: 100vw;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.profile__logout{
+    position: absolute;
+    right: 1rem;
+    width: 8vw;
+    height:7vh;
+    font-size: 1.2rem;
+    background-color: rgba(247, 92, 3, .9);
+    border-radius: 3px;
+    border: 2px;
+    box-shadow: -1px 1px 5px;
+}
+.profile__logout:hover{
+    cursor: pointer;
+}
+.profile__view{
+    width: 11vw;
+    height: 9vh;
+    font-size: 1.2rem;
+    background-color: rgba(65, 234, 212, .9);
+    border-radius: 3px;
+    border: 2px;
+    box-shadow: -1px 1px 5px;
+}
+.profile__view:hover {
+    cursor: pointer;
+}
+.profile__display {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+}

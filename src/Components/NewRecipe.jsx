@@ -26,16 +26,13 @@ const NewRecipe = () => {
         nameRef.current.focus()
     }
 
-   // for pic, when i figure that out const [] = useState()
-
-
     let initialValues = {
         title: '',
         time: '',
         ingredients: [],
         amount: [],
         instructions: '',
-        //imageURL
+        imageURL: '',
     }
 
   const onSubmit = (values) => {
@@ -53,10 +50,11 @@ const NewRecipe = () => {
     })
     .then((response) => {
         console.log(response.data)
-
+        alert(`Recipe submitted!`)
     }).catch((error) => {
         console.log(error)
         console.log(`whoops, error in newrecipe.js promise`)
+        alert(`Whoops! There was a problem submitting your recipe. Try again.`)
     })
   }
 
@@ -83,15 +81,16 @@ const NewRecipe = () => {
                  {/* <input type='text' placeholder='how many people does this serve' name={serves} value={values.serves} onChange={handleChange}/> */}
                  <input type='text' placeholder='ingredients' name='ingredients'ref={nameRef}/>
                  <input type='number' placeholder='amount' name='amount' ref={amountRef}/>
-                 <button onClick={addIngredient} type='button' >Add Ingredients</button>
-                 {/* <button onClick={addIngredient}  type='button'>Add Amount</button> */}
+                 <button className='recipe__ing__btn' onClick={addIngredient} type='button' >Add Ingredients</button>
+        
                  <ul>
                     {ingredientDisplay}
                     {ingredientAmountDisplay}
                  </ul>
+
                  <textarea placeholder='instructions' name='instructions' value={values.instructions} onChange={handleChange}></textarea>
-                 {/* <input type='image' placeholder='recipe image' name='imageURL'/> */}
-                 <button type='submit'>Submit Recipe</button>
+                 <input  placeholder='recipe image URL' name='imageURL' value={values.imageURL} onChange={handleChange}/>
+                 <button className='recipe__submit' type='submit'>Submit Recipe</button>
              </form>
         )}</Formik>
        

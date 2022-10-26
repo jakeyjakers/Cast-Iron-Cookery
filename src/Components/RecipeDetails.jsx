@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { CASTIRON_COOKERY_API } from '../Store/Config'
 import AuthContext from '../Store/AuthContext'
 import axios from 'axios'
-import Cobbler from '../StockPhotos/Cobbler-Image.jpg'
 import './RecipeDetails.css'
 
 const RecipeDetails = () => {
@@ -20,10 +19,12 @@ const RecipeDetails = () => {
   }})
           .then((response) => {
             console.log(response)
+            alert(`Recipe Favorited!`)
           })
           .catch((error) => {
             console.log(`ERROR in promise of favorite handler recipedetails.jsx`)
             console.log(error)
+            alert(`Whoops! There was a problem favoriting this recipe. Try again later.`)
           })
   }
 
@@ -42,46 +43,46 @@ console.log(id)
     }).catch((error) => {
       console.log(`ERROR in promise of recipedetails.jsx`)
       console.log(error)
+      alert(`Whoops! There was a problem grabbing this recipe. Try again later.`)
     })
    
   }, [id])
   console.log(recipe)
-  
-// console.log(recipe[0].title)
-  // will need to make a func to display data here, maybe with map? 
-  // then render it it in the return
+  console.log(recipe.ingredients)
+  console.log(recipe.ingredientsAmount)
+
   return (
     <div className='recipe__container'>
       <div className='recipe__details1'>
-        <img src={Cobbler}/>
-        <h3>Recipe Details..</h3>
-       <h2>{recipe.title}</h2> 
-        {/* //maybe back button? */}
-        <h4>{recipe.time}</h4>
+        <img src={recipe.image}/>
+        <h1>Recipe Details....</h1>
+       <h2>Title: {recipe.title}</h2> 
+        <h3>Time: {recipe.time}</h3>
         {authCtx.token && <button onClick={() => favoriteHandler()}type='button'>Favorite</button> }
       </div>
       <div className='recipe__details2'>
         <ul>
           
-          {/* {recipe.ingredients.map((ingredient, index) => {
+          {recipe.ingredients && recipe.ingredients.map((ingredient, index) => {
             return (
               <li>{ingredient}</li>
             )
-          })} */}
-          {/* {recipe.ingredientsAmount.map((amount, index) => {
-            return (
-              <li>{amount}</li>
-            )
-          })} */}
+          })} 
+             </ul>
+             <ul>
+           {recipe.ingredientsAmount && recipe.ingredientsAmount.map((amount, index) => {
+             return (
+               <li>{amount}</li>
+               )
+              })}
+             
+              </ul>
           
-        </ul>
       </div>
       <div className='recipe__instructions'>
-        <span>
+        
           {recipe.instructions}
-         
-
-        </span>
+        
       </div>
     </div>
   )

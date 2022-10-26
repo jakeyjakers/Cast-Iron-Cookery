@@ -8,8 +8,9 @@ module.exports = {
 //]"ingredients":["8"],"amount":["4"],"instructions":"gfdsgsdfg"},"userId":"1"}
 
         try{
-            const {title, time, ingredients, amount, instructions} = req.body.values
+            const {title, time, ingredients, amount, instructions, imageURL} = req.body.values
                 const userId = req.body.userId
+                
                 console.log(userId)
             const newRecipe = await Recipe.create({
                 title: title,
@@ -18,6 +19,7 @@ module.exports = {
                 ingredientsAmount: amount,
                 time: time,
                 userId: userId,
+                image: imageURL,
             })
             res.status(201).send(newRecipe)
         } catch(error) {
@@ -29,18 +31,18 @@ module.exports = {
     deleteRecipe: async (req, res) => {
         console.log(`delete recipe, recipes.js`)
 
+        const {id} = req.params
+        
         try{
-            const {id} = req.params
+            await Favs.destroy({where: {recipeId: +id}})
             await Recipe.destroy({where: {id: +id}})
+            
             res.sendStatus(200)
         } catch(error) {
             console.log(`ERROR in deleteRecipe`)
             console.log(error)
             res.sendStatus(400)
         }
-        const {id} = req.params
-        await Recipe.destroy({where: {id: +id}})
-        res.sendStatus(200)
     },
     getAllRecipes: async (req, res) => {
         console.log(`get all recipes in recipes.js`)
@@ -97,17 +99,18 @@ module.exports = {
     },
     getUserRecipes: async (req, res) => {
         console.log(`get user recipes in recipes.js`)
-
+        console.log(`TEST IN GET ALL RECIPES`)
         const {id} = req.params
         try{
             const recipes = await Recipe.findAll({
-                where: {id: +id},
+                where: {userId: +id},
                 include: [{
                     model: User,
                     required: true,
                     attributes: [`username`],
                 }]
             }) 
+            console.log(recipes)
             res.status(200).send(recipes)
         } catch(error) {
             console.log(`ERROR in getUserRecipes`)

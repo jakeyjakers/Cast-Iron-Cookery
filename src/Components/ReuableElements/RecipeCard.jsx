@@ -21,7 +21,7 @@ const RecipeCard = ({
     <Fragment>
       {displayState ? (
         <div className="recipe__card">
-          <img src={recipe.image} className="recipe__img" />
+          <img src={recipe.image } className="recipe__img" alt=' delicious food.' />
           <h2 key={recipe.id} id={recipe.id}>
             {recipe.title}
           </h2>
@@ -34,7 +34,7 @@ const RecipeCard = ({
         </div>
       ) : (
         <div className="recipe__card">
-          <img src={recipeFav.image} className="recipe__img" />
+          <img src={recipeFav.image} className="recipe__img" alt='delicious  favorited food.'/>
           <h2 key={recipeFav.id} id={recipeFav.id}>
             {recipeFav.title}
           </h2>

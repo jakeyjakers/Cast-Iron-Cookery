@@ -55,6 +55,12 @@ const NewRecipe = () => {
         console.log(`whoops, error in newrecipe.js promise`);
         alert(`Whoops! There was a problem submitting your recipe. Try again.`);
       });
+      setIngredientAmount([])
+      setIngredients([])
+      values.title = ''
+      values.time = ""
+      values.instructions = ""
+      values.imageURL = ""
   };
 
   const ingredientDisplay = ingredients.map((item, index) => {

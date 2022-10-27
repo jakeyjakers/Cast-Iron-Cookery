@@ -34,8 +34,6 @@ const NewRecipe = () => {
     values.ingredients = ingredients;
     values.amount = indgredientAmount;
     console.log(values);
-    console.log(token);
-    console.log(userId);
 
     axios
       .post(

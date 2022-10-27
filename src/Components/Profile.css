@@ -17,6 +17,10 @@
     align-items: center;
     justify-content: space-evenly;
 }
+.profile__message {
+    color: white;
+    font-size: x-large;
+}
 .profile__logout{
     position: absolute;
     right: 1rem;
